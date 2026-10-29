@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But not these files/directories
+!.gitignore
+!.github/
+!.github/workflows/
+!.github/workflows/**

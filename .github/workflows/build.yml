@@ -1,75 +1,11 @@
-name: Create ASM Download Manager Release
+name: ASM Download Manager
 
-# Manual trigger only - upload setup.exe and version.json from local build
+# This workflow does NOT build the app.
+# Releases are created and uploaded manually via the GitHub UI.
+# The auto-updater in the app reads version.json from the latest release.
+
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version number (e.g. 1.0.8)'
-        required: true
-        type: string
-      delete_old_releases:
-        description: 'Delete older releases (keep only this one)'
-        required: false
-        default: true
-        type: boolean
 
 permissions:
-  contents: write
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifacts from local build
-        run: |
-          echo "Version: ${{ inputs.version }}"
-          echo "Waiting for uploaded assets..."
-
-      - name: Create or update release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          VERSION: ${{ inputs.version }}
-        run: |
-          # Check if release already exists
-          if gh release view "v${VERSION}" --repo "${{ github.repository }}" &>/dev/null; then
-            echo "Release v${VERSION} already exists, deleting it first..."
-            gh release delete "v${VERSION}" --repo "${{ github.repository }}" --yes --cleanup-tag
-          fi
-
-          # Create the release (assets are uploaded manually via GitHub UI)
-          gh release create "v${VERSION}" \
-            --repo "${{ github.repository }}" \
-            --title "ASM Download Manager v${VERSION}" \
-            --notes "$(cat <<EOF
-          # ASM Download Manager v${VERSION} 🚀
-
-          ### 📥 التحميل:
-          حمّل **ASMDownload-Setup.exe** من الأسفل وشغّله.
-
-          ### 🔄 التحديث التلقائي:
-          لو عندك نسخة قديمة، هتلاقي إشعار تحديث تلقائي.
-
-          ---
-          🌐 [الموقع](https://www.asm-echo.com) | 📺 [YouTube](https://www.youtube.com/@ASM-ECHO) | 📘 [Facebook](https://www.facebook.com/ASM0ECHO)
-          EOF
-          )" \
-            --latest
-
-          echo "✅ Release v${VERSION} created successfully!"
-          echo "📌 Now upload ASMDownload-Setup.exe and version.json to the release manually."
-
-      - name: Clean old releases
-        if: inputs.delete_old_releases
-        env:
-          GH_TOKEN: ${{ github.token }}
-          VERSION: ${{ inputs.version }}
-        run: |
-          tags=$(gh release list --repo "${{ github.repository }}" --limit 100 --json tagName -q '.[].tagName')
-          for tag in $tags; do
-            if [ "$tag" != "v${VERSION}" ] && [ -n "$tag" ]; then
-              echo "Removing old release: $tag"
-              gh release delete "$tag" --repo "${{ github.repository }}" --yes --cleanup-tag
-            fi
-          done
-          echo "✅ Old releases cleaned up!"
+  contents: read

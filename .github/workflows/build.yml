@@ -9,3 +9,10 @@ on:
 
 permissions:
   contents: read
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Information
+        run: echo "Releases are created and uploaded manually via the GitHub UI."

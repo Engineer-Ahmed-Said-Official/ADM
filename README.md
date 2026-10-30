@@ -7,7 +7,7 @@
 تطوير وتصميم **ASM**
 
 [![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?style=for-the-badge&logo=windows11&logoColor=white)](https://github.com/Engineer-Ahmed-Said-Official/ADM/releases)
-[![Version](https://img.shields.io/badge/Version-1.0.8-success?style=for-the-badge)](https://github.com/Engineer-Ahmed-Said-Official/ADM/releases)
+[![Version](https://img.shields.io/badge/Version-1.0.9-success?style=for-the-badge)](https://github.com/Engineer-Ahmed-Said-Official/ADM/releases)
 [![Website](https://img.shields.io/badge/Website-asm--echo.com-blue?style=for-the-badge)](https://www.asm-echo.com/)
 
 [**📥 تحميل البرنامج (Download Installer)**](https://github.com/Engineer-Ahmed-Said-Official/ADM/releases/latest) • [**الموقع الرسمي**](https://www.asm-echo.com/) • [**قناة اليوتيوب**](https://www.youtube.com/@ASM-ECHO) • [**صفحة الفيسبوك**](https://www.facebook.com/ASM0ECHO)
